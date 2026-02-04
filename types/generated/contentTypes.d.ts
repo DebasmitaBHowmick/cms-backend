@@ -555,6 +555,7 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
+    products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID;
     updatedAt: Schema.Attribute.DateTime;
@@ -607,7 +608,8 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
   };
   attributes: {
     aplc: Schema.Attribute.BigInteger;
-    catorgory: Schema.Attribute.String & Schema.Attribute.Required;
+    category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'> &
+      Schema.Attribute.Required;
     chemicalFormulaImg: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
